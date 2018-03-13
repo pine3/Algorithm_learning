@@ -25,7 +25,7 @@ private:
     HashFunction hash_function_;
 };
 
-class FixedSet {
+class FSet {
 public:
     void Initialize(const std::vector<int>& elements);
     bool Contains(int value_to_found) const;
@@ -36,12 +36,12 @@ private:
     HashFunction hash_function_;
 };
 
-std::vector<bool> FindElements(const FixedSet& fixed_set, 
+std::vector<bool> FindElements(const FSet& f_set, 
                                const std::vector<int>& value_to_found);
 
 int64_t HashFunction::BIG_PRIME = 2000000009;
 
-void FixedSet::Initialize(const std::vector<int>& elements) {
+void FSet::Initialize(const std::vector<int>& elements) {
     std::mt19937 generator = std::mt19937 (3449);
     ChooseHash(elements, generator);
     std::vector<std::vector<int>> buckets (elements.size(), std::vector<int> ());
@@ -55,7 +55,7 @@ void FixedSet::Initialize(const std::vector<int>& elements) {
     return;
 }
 
-void FixedSet::ChooseHash(const std::vector<int>& elements, std::mt19937& generator) {
+void FSet::ChooseHash(const std::vector<int>& elements, std::mt19937& generator) {
     size_t sum_squares;
     do {
         hash_function_ = HashFunction::MakeHashFunction(generator);
