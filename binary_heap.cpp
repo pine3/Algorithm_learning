@@ -49,11 +49,11 @@ private:
         return (in - 1) / 2;
     }
 
-    int SunLeft(int in) {
+    int SonLeft(int in) {
         return 2 * in + 1;
     }
 
-    int SunRight(int in) {
+    int SonRight(int in) {
         return 2 * in + 2;
     }
 
@@ -67,18 +67,18 @@ private:
 
     int Shift_down(int in) {
         while ((2 * in + 2 < size) && 
-        ((elements[SunLeft(in)] < elements[in]) || (elements[SunRight(in)] < elements[in]))) {
-            if (elements[SunLeft(in)] < elements[SunRight(in)]) {
-                std::swap(elements[SunLeft(in)], elements[in]);
-                in = SunLeft(in);
+        ((elements[SonLeft(in)] < elements[in]) || (elements[SonRight(in)] < elements[in]))) {
+            if (elements[SonLeft(in)] < elements[SonRight(in)]) {
+                std::swap(elements[SonLeft(in)], elements[in]);
+                in = SonLeft(in);
             } else {
-                std::swap(elements[SunRight(in)], elements[in]);
-                in = SunRight(in);
+                std::swap(elements[SonRight(in)], elements[in]);
+                in = SonRight(in);
             }
         }
-        if ((2 * in + 1 < size) && (elements[SunLeft(in)] < elements[in])) {
-                std::swap(elements[SunLeft(in)], elements[in]);
-                in = SunLeft(in);
+        if ((2 * in + 1 < size) && (elements[SonLeft(in)] < elements[in])) {
+                std::swap(elements[SonLeft(in)], elements[in]);
+                in = SonLeft(in);
         }
         return in;
     }
